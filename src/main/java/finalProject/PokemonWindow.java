@@ -1,15 +1,67 @@
 package finalProject;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 public class PokemonWindow extends javax.swing.JFrame {
     private WeatherWindow weatherWin;
     private PokemonWindow pokemonWin;
     private PokemonInfoWindow pokeInfoWin;
     private String poke_name;
+    private ArrayList<String> snowWeatherPokemon;
+    private ArrayList<String> fogWeatherPokemon;
+    private ArrayList<String> rainWeatherPokemon;
+    private ArrayList<String> windWeatherPokemon;
+    private ArrayList<String> cloudWeatherPokemon;
+    private ArrayList<String> partCloudWeatherPokemon;
+    private ArrayList<String> sunnyWeatherPokemon;
+    private DefaultListModel model;
+    
     
     public PokemonWindow() {  //create a pop up window that asks the user to pick a pokemon from the list
         initComponents();
         pokeInfoWin = new PokemonInfoWindow();
         pokeInfoWin.setPokemonWin(this); 
+        
+        snowWeatherPokemon = new ArrayList<String>();
+        snowWeatherPokemon.add("Swinub");
+        snowWeatherPokemon.add("Snorunt");
+        snowWeatherPokemon.add("Delibird");
+        
+        fogWeatherPokemon = new ArrayList<String>();
+        fogWeatherPokemon.add("Gastly");
+        fogWeatherPokemon.add("Litwick");
+        fogWeatherPokemon.add("Gastly");
+        
+        rainWeatherPokemon = new ArrayList<String>();
+        rainWeatherPokemon.add("Squirtle");
+        rainWeatherPokemon.add("Staru");
+        rainWeatherPokemon.add("Horsea");
+        
+        windWeatherPokemon = new ArrayList<String>();
+        windWeatherPokemon.add("Pidgey");
+        windWeatherPokemon.add("Zubat");
+        windWeatherPokemon.add("Spearow");
+        
+        cloudWeatherPokemon = new ArrayList<String>();
+        cloudWeatherPokemon.add("Machop");
+        cloudWeatherPokemon.add("Mankey");
+        cloudWeatherPokemon.add("Crogunk");
+        
+        partCloudWeatherPokemon = new ArrayList<String>();
+        partCloudWeatherPokemon.add("Ratata");
+        partCloudWeatherPokemon.add("Geodude");
+        partCloudWeatherPokemon.add("Diglet");
+        
+        sunnyWeatherPokemon = new ArrayList<String>();
+        sunnyWeatherPokemon.add("Charmander");
+        sunnyWeatherPokemon.add("Bulbasaur");
+        sunnyWeatherPokemon.add("Drilbur");
+        
+        model = new DefaultListModel();
+        jList1.setModel(model);
+        
+//        System.out.print();
     }
 
     /**
@@ -25,9 +77,10 @@ public class PokemonWindow extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         title = new javax.swing.JLabel();
         pokemonLabel = new javax.swing.JLabel();
-        percentLabel = new javax.swing.JLabel();
         pokeInfoBtn = new javax.swing.JButton();
         returnBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,8 +94,6 @@ public class PokemonWindow extends javax.swing.JFrame {
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Weathermon.png"))); // NOI18N
 
         pokemonLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokmon.png"))); // NOI18N
-
-        percentLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Encounter-Chance.png"))); // NOI18N
 
         pokeInfoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokedex-Entry.png"))); // NOI18N
         pokeInfoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -58,25 +109,32 @@ public class PokemonWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Current-Weather.png"))); // NOI18N
+        jLabel1.setText(":");
+
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pokeInfoBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(returnBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(title))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(pokeInfoBtn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(pokemonLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(percentLabel))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(returnBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(title))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pokemonLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,14 +148,16 @@ public class PokemonWindow extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(returnBtn)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pokemonLabel)
-                    .addComponent(percentLabel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pokeInfoBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,6 +165,12 @@ public class PokemonWindow extends javax.swing.JFrame {
 
     public void setWeatherWin(WeatherWindow myCreator){
         weatherWin = myCreator;
+    }
+    
+    public void setModel(ArrayList<String> array){
+        for(int i=0; i<3; i++){
+            model.addElement(array.get(i));
+        }
     }
     
     private void pokeInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokeInfoBtnActionPerformed
@@ -127,9 +193,10 @@ public class PokemonWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel percentLabel;
     private javax.swing.JButton pokeInfoBtn;
     private javax.swing.JLabel pokemonLabel;
     private javax.swing.JButton returnBtn;

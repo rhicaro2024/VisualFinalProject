@@ -150,17 +150,14 @@ public class PokemonInfoWindow extends javax.swing.JFrame {
     public void setPokemonWin(PokemonWindow myCreator){
         pokemonWin = myCreator;
     }
-
+    
     private void pokeNameLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokeNameLabelActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_pokeNameLabelActionPerformed
 
     private void pokeTypeDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokeTypeDescActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_pokeTypeDescActionPerformed
 
     private void pokeLvlDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokeLvlDescActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_pokeLvlDescActionPerformed
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
