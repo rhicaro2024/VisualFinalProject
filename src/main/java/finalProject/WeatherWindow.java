@@ -36,7 +36,6 @@ public class WeatherWindow extends javax.swing.JFrame {
     private String userLocation;
     private int tempIndex;
     public String weatherIRL;
-
     
     // from https://mkyong.com/java/how-to-round-double-float-value-to-2-decimal-points-in-java/
     private static final DecimalFormat df = new DecimalFormat("0.00");
@@ -77,8 +76,6 @@ public class WeatherWindow extends javax.swing.JFrame {
         tempLabelsChar.add(tempChar11);
         tempLabelsChar.add(tempChar12);
         tempLabelsChar.add(tempChar13);  
-        
-        weatherIRL = currentWeather.getText();
     }
 
     /**
@@ -555,10 +552,9 @@ public class WeatherWindow extends javax.swing.JFrame {
                                 .addComponent(Location)
                                 .addComponent(currentLocation))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(stateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(ChangeLocBtn)
-                                    .addComponent(cityNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(ChangeLocBtn)
+                                .addComponent(cityNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(stateLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Current_Weather)
@@ -652,12 +648,28 @@ public class WeatherWindow extends javax.swing.JFrame {
 //        return label_to_change;
 //    }
     
+    
+    public String getCurrentWeather(){
+        weatherIRL = currentWeather.getText();
+        return weatherIRL;
+    }
+    
+    public String getCityLocation(){
+        String location = currentLocation.getText();
+        return location;
+    }
+    
+    public String getStateLocation(){
+        String location = stateLabel.getText();
+        return location;
+    }
+    
     //could probably move this into another class and call on it as a super 
     public static Location[] getLocationResp(String city_name){ //could probably add something about adding state as well
         Gson gson = new Gson();
         try {
             URL url = new URL("http://api.openweathermap.org/geo/1.0/direct?q=" 
-                    + city_name + "&limit=5&appid=bf1d5a8704213ddb84ac47f1f2756f4d");
+                    + city_name + "&limit=5&appid=cbd0dd1ec0267431ba7bdb41a4f8051e");
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             BufferedReader in = new BufferedReader(
                         new InputStreamReader(connection.getInputStream()));
@@ -672,11 +684,11 @@ public class WeatherWindow extends javax.swing.JFrame {
         return null;
     }
 //    Can add parameters double lat, double lon later
-    public Response getResponse(double lat, double lon){ //Could probably piut this in another class for a super method
+    public static Response getResponse(double lat, double lon){ //Could probably piut this in another class for a super method
         Gson gson = new Gson(); //returns a response from weather api
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + 
-                    "&lon=" + lon + "&appid=bf1d5a8704213ddb84ac47f1f2756f4d");
+                    "&lon=" + lon + "&appid=cbd0dd1ec0267431ba7bdb41a4f8051e");
 //            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?lat=42.5584&lon=-70.8801&appid=bf1d5a8704213ddb84ac47f1f2756f4d");
             HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
             BufferedReader in = new BufferedReader(
@@ -762,12 +774,6 @@ public class WeatherWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_FarenheitActionPerformed
 
     private void ChangeLocBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeLocBtnActionPerformed
-        //labels that need to change:
-        //tempLabelsHigh
-        //tempLabelsLow
-        //currentLocation
-        //currentWeather
-        //currentTemp
         userLocation = cityNameTxt.getText();
         try {
 //            Integer.parseInt(userLocation); //checks if input is mixture of numbers and letters
@@ -800,6 +806,12 @@ public class WeatherWindow extends javax.swing.JFrame {
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Please Enter a Valid City Name");
         }
+        pokemonWin.model.clear();
+        pokemonWin.setJListPokemon(getCurrentWeather());
+        pokemonWin.setCurrentWeather2(getCurrentWeather());
+        pokemonWin.setLocation(getCityLocation());
+        pokemonWin.setState(getStateLocation());
+        
     }//GEN-LAST:event_ChangeLocBtnActionPerformed
 
     /**
@@ -812,7 +824,7 @@ public class WeatherWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Celsius;
-    private javax.swing.JButton ChangeLocBtn;
+    public javax.swing.JButton ChangeLocBtn;
     private javax.swing.JLabel Current_Weather;
     private javax.swing.JLabel Date;
     private javax.swing.JButton Farenheit;

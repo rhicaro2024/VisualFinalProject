@@ -257,13 +257,11 @@
                               <Component id="Location" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="currentLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="stateLabel" alignment="3" max="32767" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                  <Component id="ChangeLocBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cityNameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="ChangeLocBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cityNameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="stateLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -801,6 +799,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChangeLocBtnActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="tempChar1">
       <Properties>
