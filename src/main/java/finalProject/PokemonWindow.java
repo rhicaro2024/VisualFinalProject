@@ -1,15 +1,13 @@
 package finalProject;
 
-import static java.lang.System.currentTimeMillis;
-import java.time.Clock;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class PokemonWindow extends javax.swing.JFrame {
     private WeatherWindow weatherWin;
     private PokemonWindow pokemonWin;
-    private PokemonInfoWindow pokeInfoWin;
     private String poke_name;
     private ArrayList<String> snowWeatherPokemon;
     private ArrayList<String> fogWeatherPokemon;
@@ -18,12 +16,11 @@ public class PokemonWindow extends javax.swing.JFrame {
     private ArrayList<String> cloudWeatherPokemon;
     private ArrayList<String> partCloudWeatherPokemon;
     private ArrayList<String> sunnyWeatherPokemon;
+    private ArrayList<String> thunderWeatherPokemon;
     public DefaultListModel model;
     
     public PokemonWindow() {  //create a pop up window that asks the user to pick a pokemon from the list
         initComponents();
-        pokeInfoWin = new PokemonInfoWindow();
-        pokeInfoWin.setPokemonWin(this); 
         
         snowWeatherPokemon = new ArrayList<String>();
         snowWeatherPokemon.add("Swinub");
@@ -60,6 +57,11 @@ public class PokemonWindow extends javax.swing.JFrame {
         sunnyWeatherPokemon.add("Bulbasaur");
         sunnyWeatherPokemon.add("Drilbur");
         
+        thunderWeatherPokemon = new ArrayList<String>();
+        thunderWeatherPokemon.add("Pichu");
+        thunderWeatherPokemon.add("Magnemite");
+        thunderWeatherPokemon.add("Electrokid");
+        
         model = new DefaultListModel();
         jList1.setModel(model);
 
@@ -78,17 +80,19 @@ public class PokemonWindow extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         title = new javax.swing.JLabel();
         pokemonLabel = new javax.swing.JLabel();
-        pokeInfoBtn = new javax.swing.JButton();
         returnBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         currentWeather2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         locationLabel = new javax.swing.JLabel();
         stateLabel = new javax.swing.JLabel();
+        infoBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Boosted Pokemon");
 
-        jList1.setFont(new java.awt.Font("Kohinoor Bangla", 0, 14)); // NOI18N
+        jList1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Pokemon 1", "Pokemon 2" };
             public int getSize() { return strings.length; }
@@ -100,13 +104,6 @@ public class PokemonWindow extends javax.swing.JFrame {
 
         pokemonLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokmon.png"))); // NOI18N
 
-        pokeInfoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokedex-Entry.png"))); // NOI18N
-        pokeInfoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pokeInfoBtnActionPerformed(evt);
-            }
-        });
-
         returnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Return.png"))); // NOI18N
         returnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,17 +114,26 @@ public class PokemonWindow extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Current-Weather.png"))); // NOI18N
         jLabel1.setText(":");
 
-        currentWeather2.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        currentWeather2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         currentWeather2.setText("Place Holder");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Location.png"))); // NOI18N
         jLabel2.setText(":");
 
-        locationLabel.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        locationLabel.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         locationLabel.setText("Place Holder");
 
-        stateLabel.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        stateLabel.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         stateLabel.setText("Place Holder");
+
+        infoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Info.png"))); // NOI18N
+        infoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText(",");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,27 +146,26 @@ public class PokemonWindow extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(locationLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(stateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pokeInfoBtn)
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(pokemonLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(currentWeather2)
-                                    .addGap(6, 6, 6))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(returnBtn)
-                                .addGap(70, 70, 70)
-                                .addComponent(title)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(stateLabel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(pokemonLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(currentWeather2)
+                            .addGap(6, 6, 6))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(returnBtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(title)
+                            .addGap(66, 66, 66)
+                            .addComponent(infoBtn))))
+                .addGap(20, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,26 +174,26 @@ public class PokemonWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(returnBtn)
-                        .addGap(23, 23, 23))
+                        .addGap(16, 16, 16))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(title)
-                        .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(infoBtn)
+                            .addComponent(title))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pokemonLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(currentWeather2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pokeInfoBtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(locationLabel)
-                        .addComponent(stateLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(locationLabel)
+                    .addComponent(stateLabel)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,7 +233,7 @@ public class PokemonWindow extends javax.swing.JFrame {
             setModel(fogWeatherPokemon);
         }
         if (weatherType.contains("rain")) {
-            setModel(sunnyWeatherPokemon);
+            setModel(rainWeatherPokemon);
         }
         if (weatherType.contains("wind")) {
             setModel(windWeatherPokemon);
@@ -245,18 +250,30 @@ public class PokemonWindow extends javax.swing.JFrame {
         if (weatherType.contains("clear")) {
             setModel(sunnyWeatherPokemon);
         }
+        if (weatherType.contains("thunder")) {
+            setModel(thunderWeatherPokemon);
+        }
+        if (weatherType.contains("storm")) {
+            setModel(thunderWeatherPokemon);
+        }
     }
     
-    private void pokeInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokeInfoBtnActionPerformed
-        pokeInfoWin.setVisible(true);
-        this.setVisible(false);
-        System.out.println(jList1.getSelectedValue());
-    }//GEN-LAST:event_pokeInfoBtnActionPerformed
-
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         weatherWin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void infoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoBtnActionPerformed
+        String infoStr = "Certain Pokémon will appear more "
+                + "frequently in weather conditions that correspond to their type." + "\n" 
+                + "For example, you’re more likely to see a Water-type Pokémon, "
+                + "like Squirtle or Magikarp, during rainfall." + "\n" + "These Pokémon also"
+                + "tend to have higher CP and perform better in battle." + "\n" + "As an added bonus, "
+                + "you will receive extra Stardust when you catch a Pokémon that is boosted "
+                + "by the current weather conditions." + "\n" + "The pokemon listed below "
+                + "are 'boosted' pokemon that can be encountered in that area.";
+        JOptionPane.showMessageDialog(null, infoStr, "Boosted Pokemon Information", 0, new ImageIcon("src/main/resources/pokeball.gif"));
+    }//GEN-LAST:event_infoBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,12 +285,13 @@ public class PokemonWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currentWeather2;
+    private javax.swing.JButton infoBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel locationLabel;
-    private javax.swing.JButton pokeInfoBtn;
     private javax.swing.JLabel pokemonLabel;
     private javax.swing.JButton returnBtn;
     private javax.swing.JLabel stateLabel;

@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 import com.google.gson.Gson;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.lang.NullPointerException;
 import java.io.InputStreamReader;
@@ -23,13 +26,14 @@ import java.net.HttpURLConnection;
 //from https://www.javatpoint.com/java-get-current-date
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;  
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //end of code
 
 public class WeatherWindow extends javax.swing.JFrame {
     private WeatherWindow weatherWin;
     private PokemonWindow pokemonWin;
-    private PokemonInfoWindow pokeInfoWin;
     private ArrayList<JLabel> tempLabelsHigh;
     private ArrayList<JLabel> tempLabelsLow;
     private ArrayList<JLabel> tempLabelsChar;
@@ -44,7 +48,6 @@ public class WeatherWindow extends javax.swing.JFrame {
     public WeatherWindow() {
         initComponents();
         pokemonWin = new PokemonWindow();
-        pokeInfoWin = new PokemonInfoWindow();
         pokemonWin.setWeatherWin(this); //make a method in pokemon frame
         Farenheit.setVisible(false);
         tempLabelsHigh = new ArrayList<JLabel>();
@@ -172,7 +175,7 @@ public class WeatherWindow extends javax.swing.JFrame {
         jLabel9.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Weather Screen");
+        setTitle("Weather");
         setBackground(new java.awt.Color(51, 51, 255));
 
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Weathermon.png"))); // NOI18N
@@ -199,7 +202,7 @@ public class WeatherWindow extends javax.swing.JFrame {
             }
         });
 
-        currentTemp.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        currentTemp.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         currentTemp.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp()) - 273) + 32) + "");
 
         degreeSign.setText("º");
@@ -218,20 +221,20 @@ public class WeatherWindow extends javax.swing.JFrame {
             }
         });
 
-        currentWeather.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        currentWeather.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         currentWeather.setText(getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getWeather()[0].getDescription());
 
-        currentLocation.setFont(new java.awt.Font("Kohinoor Telugu", 0, 18)); // NOI18N
+        currentLocation.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         currentLocation.setText(getResponse(getLocationResp("beverly")[0].getLat(), getLocationResp("beverly")[0].getLon()).getCity().getName());
 
-        currentDate.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        currentDate.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         currentDate.setText(date_arr[0]);
 
-        time.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        time.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         time.setText(dtf.format(now));
         //end of code
 
-        day1.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        day1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         day1.setText(date_arr[0]);
 
         low.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Low.png"))); // NOI18N
@@ -241,55 +244,55 @@ public class WeatherWindow extends javax.swing.JFrame {
         day.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Day.png"))); // NOI18N
         day.setText(":");
 
-        day2.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        day2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         day2.setText(date_arr2[0]);
 
-        day3.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        day3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         day3.setText(date_arr3[0]);
 
-        day4.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        day4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         day4.setText(date_arr4[0]);
 
-        day5.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        day5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         day5.setText(date_arr5[0]);
 
-        day6.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        day6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         day6.setText(date_arr6[0]);
 
-        high1.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        high1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         high1.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp_max()) - 273) + 32) + "");
 
-        high2.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        high2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         high2.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[7].getMain().getTemp_max()) - 273) + 32) + "");
 
-        high3.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        high3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         high3.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[15].getMain().getTemp_max()) - 273) + 32) + "");
 
-        high4.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        high4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         high4.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[23].getMain().getTemp_max()) - 273) + 32) + "");
 
-        high5.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        high5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         high5.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[31].getMain().getTemp_max()) - 273) + 32) + "");
 
-        high6.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        high6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         high6.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[39].getMain().getTemp_max()) - 273) + 32) + "");
 
-        low1.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        low1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         low1.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp_min()) - 273) + 32) + "");
 
-        low2.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        low2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         low2.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[7].getMain().getTemp_max()) - 273) + 32) + "");
 
-        low3.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        low3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         low3.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[15].getMain().getTemp_max()) - 273) + 32) + "");
 
-        low4.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        low4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         low4.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[23].getMain().getTemp_max()) - 273) + 32) + "");
 
-        low5.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        low5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         low5.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[31].getMain().getTemp_max()) - 273) + 32) + "");
 
-        low6.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        low6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         low6.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[39].getMain().getTemp_max()) - 273) + 32) + "");
 
         degreeSign1.setText("º");
@@ -325,48 +328,48 @@ public class WeatherWindow extends javax.swing.JFrame {
             }
         });
 
-        tempChar1.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar1.setText("F");
 
-        tempChar2.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar2.setText("F");
 
-        tempChar3.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar3.setText("F");
 
-        tempChar4.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar4.setText("F");
 
-        tempChar5.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar5.setText("F");
 
-        tempChar6.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar6.setText("F");
 
-        tempChar7.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar7.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar7.setText("F");
 
-        tempChar8.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar8.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar8.setText("F");
 
-        tempChar9.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar9.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar9.setText("F");
 
-        tempChar10.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar10.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar10.setText("F");
 
-        tempChar11.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar11.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar11.setText("F");
 
-        tempChar12.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar12.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar12.setText("F");
 
-        tempChar13.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        tempChar13.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         tempChar13.setText("F");
 
         cityNameTxt.setText("Enter City Name");
 
-        stateLabel.setFont(new java.awt.Font("Kohinoor Bangla", 0, 18)); // NOI18N
+        stateLabel.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         stateLabel.setText(getLocationResp("Beverly")[0].getState()
         );
 
@@ -540,9 +543,9 @@ public class WeatherWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Time)
                     .addComponent(time))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Date)
                             .addComponent(currentDate))
@@ -571,8 +574,9 @@ public class WeatherWindow extends javax.swing.JFrame {
                             .addComponent(Celsius))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(weatherImg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(31, 31, 31)))
                 .addComponent(pokeWinBtn)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -643,11 +647,27 @@ public class WeatherWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         
     
-//    public ImageIcon setImage(String img_str, JLabel label_to_change){
-//        label_to_change.setIconImage(ImageIO.read(new File(img_str)));
-//        return label_to_change;
-//    }
-    
+    public void setImage(JLabel label_to_change){
+        String currentWeather1 = getCurrentWeather();
+        if (currentWeather1.contains("clear") || currentWeather1.contains("sun")){
+            label_to_change.setIcon(new ImageIcon("src/main/resources/sun.png"));
+        }
+        if (currentWeather1.contains("cloud") || currentWeather1.contains("part")){
+            label_to_change.setIcon(new ImageIcon("src/main/resources/cloud.png"));
+        }
+        if (currentWeather1.contains("rain")){
+            label_to_change.setIcon(new ImageIcon("src/main/resources/rain.png"));
+        }
+        if (currentWeather1.contains("wind")){
+            label_to_change.setIcon(new ImageIcon("src/main/resources/wind.png"));
+        }
+        if (currentWeather1.contains("thunder") || currentWeather1.contains("storm") || currentWeather1.contains("lightening")){
+            label_to_change.setIcon(new ImageIcon("src/main/resources/thunder.png"));
+        }
+        if (currentWeather1.contains("snow")){
+            label_to_change.setIcon(new ImageIcon("src/main/resources/snow.png"));
+        }
+    }
     
     public String getCurrentWeather(){
         weatherIRL = currentWeather.getText();
@@ -810,8 +830,8 @@ public class WeatherWindow extends javax.swing.JFrame {
         pokemonWin.setJListPokemon(getCurrentWeather());
         pokemonWin.setCurrentWeather2(getCurrentWeather());
         pokemonWin.setLocation(getCityLocation());
-        pokemonWin.setState(getStateLocation());
-        
+        pokemonWin.setState(getStateLocation());   
+        setImage(weatherImg);
     }//GEN-LAST:event_ChangeLocBtnActionPerformed
 
     /**
