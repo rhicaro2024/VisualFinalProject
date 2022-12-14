@@ -22,7 +22,7 @@ public class PokemonWindow extends javax.swing.JFrame {
     public PokemonWindow() {  //create a pop up window that asks the user to pick a pokemon from the list
         initComponents();
         
-        snowWeatherPokemon = new ArrayList<String>();
+        snowWeatherPokemon = new ArrayList<String>(); //made arraylists for pokemon types because there is no api for this information
         snowWeatherPokemon.add("Swinub");
         snowWeatherPokemon.add("Snorunt");
         snowWeatherPokemon.add("Delibird");
@@ -225,7 +225,7 @@ public class PokemonWindow extends javax.swing.JFrame {
         }
     }
     
-    public void setJListPokemon(String weatherType) {
+    public void setJListPokemon(String weatherType) {//sets the jlist depending on the current weather
         if (weatherType.contains("snow")) {
             setModel(snowWeatherPokemon);
         }

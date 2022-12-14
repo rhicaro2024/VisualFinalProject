@@ -1,11 +1,11 @@
 
 package finalProject;
-
-public class City { //same as json now
+//JSON object
+public class City {
     private int id;
     private String name;
     private String country;
-    private int population;// dont really need
+    private int population;
     private int timezone;
     private Coord coord;
 

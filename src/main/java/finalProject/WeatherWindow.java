@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 import com.google.gson.Gson;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.lang.NullPointerException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,14 +15,12 @@ import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 
 //
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 //
 
 //from https://www.javatpoint.com/java-get-current-date
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;  
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //end of code
@@ -647,7 +641,7 @@ public class WeatherWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         
     
-    public void setImage(JLabel label_to_change){
+    public void setImage(JLabel label_to_change){ //changes the img based on the current weather
         String currentWeather1 = getCurrentWeather();
         if (currentWeather1.contains("clear") || currentWeather1.contains("sun")){
             label_to_change.setIcon(new ImageIcon("src/main/resources/sun.png"));
@@ -684,8 +678,8 @@ public class WeatherWindow extends javax.swing.JFrame {
         return location;
     }
     
-    //could probably move this into another class and call on it as a super 
-    public static Location[] getLocationResp(String city_name){ //could probably add something about adding state as well
+    //returns a location response from open weather map getting the lat and lon of the city the user put in
+    public static Location[] getLocationResp(String city_name){
         Gson gson = new Gson();
         try {
             URL url = new URL("http://api.openweathermap.org/geo/1.0/direct?q=" 
@@ -703,13 +697,13 @@ public class WeatherWindow extends javax.swing.JFrame {
         }
         return null;
     }
-//    Can add parameters double lat, double lon later
-    public static Response getResponse(double lat, double lon){ //Could probably piut this in another class for a super method
-        Gson gson = new Gson(); //returns a response from weather api
+
+    //returns weather information from open weather map to the application
+    public static Response getResponse(double lat, double lon){
+        Gson gson = new Gson();
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + 
                     "&lon=" + lon + "&appid=cbd0dd1ec0267431ba7bdb41a4f8051e");
-//            URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?lat=42.5584&lon=-70.8801&appid=bf1d5a8704213ddb84ac47f1f2756f4d");
             HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
             BufferedReader in = new BufferedReader(
                         new InputStreamReader(conn.getInputStream()));
@@ -796,7 +790,6 @@ public class WeatherWindow extends javax.swing.JFrame {
     private void ChangeLocBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeLocBtnActionPerformed
         userLocation = cityNameTxt.getText();
         try {
-//            Integer.parseInt(userLocation); //checks if input is mixture of numbers and letters
             for (int i=0; i<tempLabelsHigh.size(); i++){
                 JLabel tmpChangeHigh = tempLabelsHigh.get(i);
                 JLabel tmpChangeLow = tempLabelsLow.get(i);

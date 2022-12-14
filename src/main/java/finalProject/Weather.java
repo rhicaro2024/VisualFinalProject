@@ -1,5 +1,7 @@
 package finalProject;
 
+//JSON object
+
 public class Weather {
     private int id;
     private String main;

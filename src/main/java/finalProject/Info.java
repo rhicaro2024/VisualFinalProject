@@ -1,6 +1,8 @@
 package finalProject;
 
-public class Info { //same as json file
+//JSON object
+
+public class Info { 
     private int dt;
     private Main main;
     private Weather[] weather;
