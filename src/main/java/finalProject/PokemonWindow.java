@@ -91,6 +91,7 @@ public class PokemonWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Boosted Pokemon");
+        setBackground(new java.awt.Color(51, 51, 255));
 
         jList1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -165,7 +166,7 @@ public class PokemonWindow extends javax.swing.JFrame {
                             .addComponent(title)
                             .addGap(66, 66, 66)
                             .addComponent(infoBtn))))
-                .addGap(20, 24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

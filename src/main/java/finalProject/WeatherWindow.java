@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 import com.google.gson.Gson;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -73,6 +75,17 @@ public class WeatherWindow extends javax.swing.JFrame {
         tempLabelsChar.add(tempChar11);
         tempLabelsChar.add(tempChar12);
         tempLabelsChar.add(tempChar13);  
+        
+        //from https://stackoverflow.com/questions/16106605/how-to-delete-text-when-a-user-clicks-a-jtextfield
+        cityNameTxt.addMouseListener(new MouseAdapter() { //this clears the txt field upon clicking it
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              cityNameTxt.setText("");
+            }
+        });
+        //end of code
+        
+        
     }
 
     /**
