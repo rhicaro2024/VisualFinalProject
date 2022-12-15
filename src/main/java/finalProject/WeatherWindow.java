@@ -115,26 +115,14 @@ public class WeatherWindow extends javax.swing.JFrame {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
         LocalDateTime now = LocalDateTime.now();
         time = new javax.swing.JLabel();
-        String dateNum = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getDt_Text();
-        String[] date_arr = dateNum.split(" ");
         day1 = new javax.swing.JLabel();
         low = new javax.swing.JLabel();
         high = new javax.swing.JLabel();
         day = new javax.swing.JLabel();
-        String dateNum2 = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[7].getDt_Text();
-        String[] date_arr2 = dateNum2.split(" ");
         day2 = new javax.swing.JLabel();
-        String dateNum3 = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[15].getDt_Text();
-        String[] date_arr3 = dateNum3.split(" ");
         day3 = new javax.swing.JLabel();
-        String dateNum4 = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[23].getDt_Text();
-        String[] date_arr4 = dateNum4.split(" ");
         day4 = new javax.swing.JLabel();
-        String dateNum5 = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[31].getDt_Text();
-        String[] date_arr5 = dateNum5.split(" ");
         day5 = new javax.swing.JLabel();
-        String dateNum6 = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[39].getDt_Text();
-        String[] date_arr6 = dateNum6.split(" ");
         day6 = new javax.swing.JLabel();
         high1 = new javax.swing.JLabel();
         high2 = new javax.swing.JLabel();
@@ -209,7 +197,7 @@ public class WeatherWindow extends javax.swing.JFrame {
         });
 
         currentTemp.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        currentTemp.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp()) - 273) + 32) + "");
+        currentTemp.setText(setCurrentTemp());
 
         degreeSign.setText("º");
 
@@ -234,14 +222,14 @@ public class WeatherWindow extends javax.swing.JFrame {
         currentLocation.setText(getResponse(getLocationResp("beverly")[0].getLat(), getLocationResp("beverly")[0].getLon()).getCity().getName());
 
         currentDate.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        currentDate.setText(date_arr[0]);
+        currentDate.setText(setDate(0)[0]);
 
         time.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
         time.setText(dtf.format(now));
         //end of code
 
         day1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        day1.setText(date_arr[0]);
+        day1.setText(setDate(0)[0]);
 
         low.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Low.png"))); // NOI18N
 
@@ -251,55 +239,55 @@ public class WeatherWindow extends javax.swing.JFrame {
         day.setText(":");
 
         day2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        day2.setText(date_arr2[0]);
+        day2.setText(setDate(7)[0]);
 
         day3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        day3.setText(date_arr3[0]);
+        day3.setText(setDate(15)[0]);
 
         day4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        day4.setText(date_arr4[0]);
+        day4.setText(setDate(23)[0]);
 
         day5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        day5.setText(date_arr5[0]);
+        day5.setText(setDate(31)[0]);
 
         day6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        day6.setText(date_arr6[0]);
+        day6.setText(setDate(39)[0]);
 
         high1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        high1.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp_max()) - 273) + 32) + "");
+        high1.setText(setCurrentTempHigh(0));
 
         high2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        high2.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[7].getMain().getTemp_max()) - 273) + 32) + "");
+        high2.setText(setCurrentTempHigh(7));
 
         high3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        high3.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[15].getMain().getTemp_max()) - 273) + 32) + "");
+        high3.setText(setCurrentTempHigh(15));
 
         high4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        high4.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[23].getMain().getTemp_max()) - 273) + 32) + "");
+        high4.setText(setCurrentTempHigh(23));
 
         high5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        high5.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[31].getMain().getTemp_max()) - 273) + 32) + "");
+        high5.setText(setCurrentTempHigh(31));
 
         high6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        high6.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[39].getMain().getTemp_max()) - 273) + 32) + "");
+        high6.setText(setCurrentTempHigh(39));
 
         low1.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        low1.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp_min()) - 273) + 32) + "");
+        low1.setText(setCurrentTempLow(0));
 
         low2.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        low2.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[7].getMain().getTemp_max()) - 273) + 32) + "");
+        low2.setText(setCurrentTempLow(7));
 
         low3.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        low3.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[15].getMain().getTemp_max()) - 273) + 32) + "");
+        low3.setText(setCurrentTempLow(15));
 
         low4.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        low4.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[23].getMain().getTemp_max()) - 273) + 32) + "");
+        low4.setText(setCurrentTempLow(23));
 
         low5.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        low5.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[31].getMain().getTemp_max()) - 273) + 32) + "");
+        low5.setText(setCurrentTempLow(31));
 
         low6.setFont(new java.awt.Font("Krungthep", 0, 18)); // NOI18N
-        low6.setText(df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[39].getMain().getTemp_max()) - 273) + 32) + "");
+        low6.setText(setCurrentTempLow(39));
 
         degreeSign1.setText("º");
 
@@ -322,8 +310,6 @@ public class WeatherWindow extends javax.swing.JFrame {
         degreeSign11.setText("º");
 
         degreeSign12.setText("º");
-
-        weatherImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sun.png"))); // NOI18N
 
         degreeSign13.setText("º");
 
@@ -580,7 +566,7 @@ public class WeatherWindow extends javax.swing.JFrame {
                             .addComponent(Celsius))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                         .addComponent(weatherImg)
                         .addGap(31, 31, 31)))
                 .addComponent(pokeWinBtn)
@@ -652,6 +638,62 @@ public class WeatherWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
         
+    public String setCurrentTemp(){
+        String temp = (df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[0].getMain().getTemp()) - 273) + 32) + "");
+        return temp;
+    }
+    
+    public String setCurrentTempHigh(int indexNum){
+        String highTemp = (df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[indexNum].getMain().getTemp_max()) - 273) + 32) + "");
+        return highTemp;
+    }
+    
+    public String setCurrentTempLow(int indexNum){
+        String lowTemp = (df.format(1.8 * ((getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[indexNum].getMain().getTemp_min()) - 273) + 32) + "");
+        return lowTemp;
+    }
+    
+    public String[] setDate(int indexNum) {
+        String dateNum = getResponse(getLocationResp("beverly")[0].getLat(),getLocationResp("beverly")[0].getLon()).getList()[indexNum].getDt_Text(); 
+        String[] date_arr = dateNum.split(" ");
+        return date_arr;
+    }
+    
+    public String setNewLocTempHigh(String city, int tempIndex){
+        String tempHigh = (df.format(1.8 * ((getResponse(getLocationResp(city)[0].getLat(),getLocationResp(city)[0].getLon()).getList()[tempIndex].getMain().getTemp_max()) - 273) + 32) + "");
+        return tempHigh;
+    }
+    
+    public String setNewLocTempLow(String city, int tempIndex){
+        String tempLow = (df.format(1.8 * ((getResponse(getLocationResp(city)[0].getLat(),getLocationResp(city)[0].getLon()).getList()[tempIndex].getMain().getTemp_min()) - 273) + 32) + "");
+        return tempLow;
+    }
+    
+    public String setNewLocCity(String userLocation){
+        String city = getResponse(getLocationResp(userLocation)[0]
+                .getLat(), getLocationResp(userLocation)[0].getLon()).getCity()
+                .getName();
+        return city;
+    }
+    
+    public String setNewLocState(String userLocation){
+        String state = getLocationResp(userLocation)[0].getState();
+        return state;
+    }
+    
+    public String setNewLocWeather(String userLocation){
+        String weather = getResponse(getLocationResp(userLocation)[0]
+                .getLat(),getLocationResp(userLocation)[0].getLon()).getList()
+                [0].getWeather()[0].getDescription();
+        return weather;
+    }
+    
+    public String setNewLocTemp(String userLocation){
+        String temp = df.format(1.8 * ((getResponse(getLocationResp(userLocation)
+                [0].getLat(),getLocationResp(userLocation)[0].getLon()).getList()[0]
+                .getMain().getTemp()) - 273) + 32) + "";
+        return temp;
+    }
     
     public void setImage(JLabel label_to_change){ //changes the img based on the current weather
         String currentWeather1 = getCurrentWeather();
@@ -810,19 +852,13 @@ public class WeatherWindow extends javax.swing.JFrame {
                 } else { 
                     tempIndex = 0;
                 }
-        tmpChangeHigh.setText(df.format(1.8 * ((getResponse(getLocationResp(userLocation)[0].getLat(),getLocationResp(userLocation)[0].getLon()).getList()[tempIndex].getMain().getTemp_max()) - 273) + 32) + "");
-        tmpChangeLow.setText(df.format(1.8 * ((getResponse(getLocationResp(userLocation)[0].getLat(),getLocationResp(userLocation)[0].getLon()).getList()[tempIndex].getMain().getTemp_min()) - 273) + 32) + "");
+        tmpChangeHigh.setText(setNewLocTempHigh(userLocation, tempIndex));
+        tmpChangeLow.setText(setNewLocTempLow(userLocation, tempIndex));
         }
-        currentLocation.setText(getResponse(getLocationResp(userLocation)[0]
-                .getLat(), getLocationResp(userLocation)[0].getLon()).getCity()
-                .getName());
-        currentWeather.setText(getResponse(getLocationResp(userLocation)[0]
-                .getLat(),getLocationResp(userLocation)[0].getLon()).getList()
-                [0].getWeather()[0].getDescription());
-        currentTemp.setText(df.format(1.8 * ((getResponse(getLocationResp(userLocation)
-                [0].getLat(),getLocationResp(userLocation)[0].getLon()).getList()[0]
-                .getMain().getTemp()) - 273) + 32) + "");
-        stateLabel.setText(getLocationResp(userLocation)[0].getState());
+        currentLocation.setText(setNewLocCity(userLocation));
+        currentWeather.setText(setNewLocWeather(userLocation));
+        currentTemp.setText(setNewLocTemp(userLocation));
+        stateLabel.setText(setNewLocState(userLocation));
         
         } catch (java.lang.NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Please Enter a Valid City Name");
@@ -830,12 +866,9 @@ public class WeatherWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please Enter a Valid City Name");
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Please Enter a Valid City Name");
-        }
-        pokemonWin.model.clear();
-        pokemonWin.setJListPokemon(getCurrentWeather());
-        pokemonWin.setCurrentWeather2(getCurrentWeather());
-        pokemonWin.setLocation(getCityLocation());
-        pokemonWin.setState(getStateLocation());   
+        } 
+        
+        pokemonWin.updateContents(getCurrentWeather(), getCityLocation(), getStateLocation());
         setImage(weatherImg);
     }//GEN-LAST:event_ChangeLocBtnActionPerformed
 

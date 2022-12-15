@@ -64,7 +64,6 @@ public class PokemonWindow extends javax.swing.JFrame {
         
         model = new DefaultListModel();
         jList1.setModel(model);
-
     }
 
     /**
@@ -206,6 +205,14 @@ public class PokemonWindow extends javax.swing.JFrame {
         currentWeather2.setText(weatherWin.getCurrentWeather());
         locationLabel.setText(weatherWin.getCityLocation());
         stateLabel.setText(weatherWin.getStateLocation());
+    }
+    
+    public void updateContents(String currentWeather, String cityLoc, String stateLoc){
+        model.clear();
+        setJListPokemon(currentWeather);
+        setCurrentWeather2(currentWeather);
+        setLocation(cityLoc);
+        setState(stateLoc);
     }
     
     public void setCurrentWeather2(String weather){

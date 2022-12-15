@@ -283,7 +283,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <EmptySpace pref="209" max="32767" attributes="0"/>
                       <Component id="weatherImg" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
@@ -433,7 +433,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[0].getMain().getTemp()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTemp()" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -488,7 +488,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr[0]" type="code"/>
+          <Connection code="setDate(0)[0]" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -512,12 +512,9 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr[0]" type="code"/>
+          <Connection code="setDate(0)[0]" type="code"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String dateNum = getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[0].getDt_Text(); &#xa;String[] date_arr = dateNum.split(&quot; &quot;);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="low">
       <Properties>
@@ -547,12 +544,9 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr2[0]" type="code"/>
+          <Connection code="setDate(7)[0]" type="code"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String dateNum2 = getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[7].getDt_Text(); &#xa;String[] date_arr2 = dateNum2.split(&quot; &quot;);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="day3">
       <Properties>
@@ -560,12 +554,9 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr3[0]" type="code"/>
+          <Connection code="setDate(15)[0]" type="code"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String dateNum3 = getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[15].getDt_Text(); &#xa;String[] date_arr3 = dateNum3.split(&quot; &quot;);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="day4">
       <Properties>
@@ -573,12 +564,9 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr4[0]" type="code"/>
+          <Connection code="setDate(23)[0]" type="code"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String dateNum4 = getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[23].getDt_Text(); &#xa;String[] date_arr4 = dateNum4.split(&quot; &quot;);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="day5">
       <Properties>
@@ -586,12 +574,9 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr5[0]" type="code"/>
+          <Connection code="setDate(31)[0]" type="code"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String dateNum5 = getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[31].getDt_Text(); &#xa;String[] date_arr5 = dateNum5.split(&quot; &quot;);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="day6">
       <Properties>
@@ -599,12 +584,9 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="date_arr6[0]" type="code"/>
+          <Connection code="setDate(39)[0]" type="code"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String dateNum6 = getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[39].getDt_Text(); &#xa;String[] date_arr6 = dateNum6.split(&quot; &quot;);"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="high1">
       <Properties>
@@ -612,7 +594,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[0].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempHigh(0)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -622,7 +604,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[7].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempHigh(7)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -632,7 +614,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[15].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempHigh(15)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -642,7 +624,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[23].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempHigh(23)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -652,7 +634,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[31].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempHigh(31)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -662,7 +644,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[39].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempHigh(39)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -672,7 +654,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[0].getMain().getTemp_min()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempLow(0)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -682,7 +664,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[7].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempLow(7)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -692,7 +674,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[15].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempLow(15)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -702,7 +684,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[23].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempLow(23)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -712,7 +694,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[31].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempLow(31)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -722,7 +704,7 @@
           <Font name="Krungthep" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="df.format(1.8 * ((getResponse(getLocationResp(&quot;beverly&quot;)[0].getLat(),getLocationResp(&quot;beverly&quot;)[0].getLon()).getList()[39].getMain().getTemp_max()) - 273) + 32) + &quot;&quot;" type="code"/>
+          <Connection code="setCurrentTempLow(39)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -782,11 +764,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="weatherImg">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/sun.png"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="degreeSign13">
       <Properties>
