@@ -84,8 +84,7 @@ public class WeatherWindow extends javax.swing.JFrame {
             }
         });
         //end of code
-        
-        
+        setImage(weatherImg);
     }
 
     /**

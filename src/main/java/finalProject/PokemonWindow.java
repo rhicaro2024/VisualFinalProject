@@ -166,7 +166,7 @@ public class PokemonWindow extends javax.swing.JFrame {
                             .addComponent(title)
                             .addGap(66, 66, 66)
                             .addComponent(infoBtn))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
